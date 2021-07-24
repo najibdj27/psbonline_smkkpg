@@ -1,7 +1,6 @@
 @extends('layout.base')
 
 @section('additional CSS')
-    <link rel="stylesheet" href="{{asset ('/Styles/CSS/style.css')}}">
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/header.css')}}">
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/button.css')}}">
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/flash.css')}}">
