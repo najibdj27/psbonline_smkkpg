@@ -142,7 +142,7 @@
                 <div class="row my-3">
                     <div class="col-3">
                         <div class="card position-relative" style="padding-bottom: 226.5px">
-                            <img src="" id="preview" class="card-img-top position-absolute" alt="">
+                            <img src="" id="preview_profile_photo" class="card-img-top position-absolute" alt="">
                         </div>
                     </div>
                     <div class="col">
@@ -751,79 +751,7 @@
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                 <h4 class="mb-3">Prestasi (optional)</h4>
                 <div class="mb-2" id="fields">
-                    <h5>Prestasi 1</h5>
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="mb-3">
-                                <label for="jenis_prestasi_1" class="form-label">Jenis Prestasi</label>
-                                <select class="form-select @error('jenis_prestasi_1') is-invalid @enderror" name="jenis_prestasi_1" value="{{old('jenis_prestasi_1')}}" aria-label="Default select example">
-                                    <option selected value="">--Jenis Prestasi--</option>
-                                    <option @if (old('jenis_prestasi_1') == "Kelompok") selected @endif value="Kelompok">Kelompok</option>
-                                    <option @if (old('jenis_prestasi_1') == "Individu") selected @endif value="Individu">Individu</option>
-                                </select>
-                                @error('jenis_prestasi_1')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label for="tingkat_prestasi_1" class="form-label">Tingkat</label>
-                                <select class="form-select @error('tingkat_prestasi_1') is-invalid @enderror" name="tingkat_prestasi_1" value="{{old('tingkat_prestasi_1')}}" aria-label="Default select example">
-                                    <option selected value="">--Pilih Tingkat Prestasi--</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Sekolah") selected @endif value="Sekolah">Sekolah</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Wilayah") selected @endif value="Wilayah">Wilayah</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Kabupaten/kota") selected @endif value="Kabupaten/kota">Kabupaten/kota</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Provinsi") selected @endif value="Provinsi">Provinsi</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Nasional") selected @endif value="Nasional">Nasional</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Internasional") selected @endif value="Internasional">Internasional</option>
-                                    <option @if (old('tingkat_prestasi_1') == "Lainnya") selected @endif value="Lainnya">Lainnya</option>
-                                </select>
-                                @error('tingkat_prestasi_1')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="mb-3">
-                                <label for="nama_prestasi_1" class="form-label">Nama Prestasi</label>
-                                <input type="text" class="form-control text-capitelize @error('nama_prestasi_1') is-invalid @enderror" id="nama_prestasi_1" placeholder="E.g Olimpiade Matematika" name="nama_prestasi_1" value="{{old('nama_prestasi_1')}}">
-                                @error('nama_prestasi_1')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="tahun_prestasi_1" class="form-label">Tahun</label>
-                                <input type="text" class="form-control @error('tahun_prestasi_1') is-invalid @enderror" id="tahun_prestasi_1" placeholder="E.g 1960" name="tahun_prestasi_1" value="{{old('tahun_prestasi_1')}}">
-                                @error('tahun_prestasi_1')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="penyelenggara_prestasi_1" class="form-label">Penyelenggara</label>
-                                <input type="text" class="form-control text-capitelize @error('penyelenggara_prestasi_1') is-invalid @enderror" id="penyelenggara_prestasi_1" placeholder="E.g Pemerintah Kab. Tasikmalaya" name="penyelenggara_prestasi_1" value="{{old('penyelenggara_prestasi_1')}}">
-                                @error('penyelenggara_prestasi_1')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
+                    {{-- form prestasi  --}}
                 </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-success btn-sm" id="addRow" type="button">
@@ -893,7 +821,7 @@
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        $('#preview').attr('src', e.target.result);
+                        $('#preview_profile_photo').attr('src', e.target.result);
                     }
 
                     reader.readAsDataURL(input.files[0]);
@@ -907,9 +835,8 @@
     </script>
     <script>
         // add row
-        var room = 1;
+        var room = 0;
         $("#addRow").click(function () {
-
             room++;
             var obj = document.getElementById('fields');
             var html = '';
@@ -987,8 +914,27 @@
             html += '</div>';
             html += '</div>';
             html += '</div>';
+            // ini
+            html += '<div class="row my-3">';
+            html += '<div class="col">';
+            html += '<div class="input-group">';
+            html += '<div class="custom-file">';
+            html += '<label for="penyelenggara_prestasi_'+room+'" class="form-label">Sertifikat</label>';
+            html += '<input type="file" class="form-control @error('sertifikat_+room') is-invalid @enderror" id="sertifikat_'+room+'" name="sertifikat_'+room+'" aria-describedby="sertifikatHelp">';
             html += '</div>';
-            html += '<button class="btn btn-danger btn-sm mb-3" onclick="remove_education_fields('+room+');" type="button">';
+            html += '</div>';
+            html += '@error('sertifikat_+room')';
+            html += '<div class="text-danger">';
+            html += '<small>{{$message}}</small>';
+            html += '</div>';
+            html += '@enderror';
+            html += '<div id="sertifikatHelp" class="form-text">Ketentuan :</br>*Format file : JPG</br>*Ukuran File : 100 Kb-3000 Kb</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            // ini
+            html += '</div>';
+            html += '<button class="btn btn-danger btn-sm mb-3" onclick="remove_fields('+room+');" type="button">';
             html += '<img src="{{ asset('Styles/IMG/delete_white_24dp.svg') }}" alt="add-icon">';
             html += '</button>';
 
@@ -998,13 +944,144 @@
             var rid = 'removeclass'+room;
 
             obj.appendChild(divtest);
-
         });
 
         // remove row
-        function remove_education_fields(rid) {
+        function remove_fields(rid) {
             $('.removeclass'+rid).remove();
+            room = rid-1;
         }
     </script>
+    {{-- <script>
+        $(document).ready(function(){
+            var rooms = [1];
+            // Add row
+            $("#addRow").click(function () {
+                var len = rooms.length;
+                if (len < 1 ){
+                    var last = 0;
+                    var value = last + 1;
+                }else if (len >= 1){
+                    var value = len;
+                }
+                rooms.push(value);
+                generateNewForm(value);
+            });
+
+            // Remove row
+            function remove_fields(rid) {
+                $('.removeclass'+rid).remove();
+            };
+            
+            function generateNewForm(value){
+                var obj = document.getElementById('fields');
+                var html = '';
+                html += '<div class="mb-2">';
+                html += '<h5>Prestasi '+value+'</h5>';
+                html += '<div class="row">';
+                html += '<div class="col-3">';
+                html += '<div class="mb-3">';
+                html += '<label for="jenis_prestasi_'+value+'" class="form-label">Jenis Prestasi</label>';
+                html += '<select class="form-select @error('jenis_prestasi_+value') is-invalid @enderror" name="jenis_prestasi_'+value+'" value="{{old('jenis_prestasi_+value')}}" aria-label="Default select example">';
+                html += '<option selected value="">--Jenis Prestasi--</option>';
+                html += '<option @if (old('jenis_prestasi_+value') == "Kelompok") selected @endif value="Kelompok">Kelompok</option>';
+                html += '<option @if (old('jenis_prestasi_+value') == "Individu") selected @endif value="Individu">Individu</option>';
+                html += '</select>';
+                html += '@error('jenis_prestasi_+value')';
+                html += '<div class="invalid-feedback">';
+                html += '{{$message}}';
+                html += '</div>';
+                html += '@enderror';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="col-4">';
+                html += '<div class="mb-3">';
+                html += '<label for="tingkat_prestasi_'+value+'" class="form-label">Tingkat</label>';
+                html += '<select class="form-select @error('tingkat_prestasi_+value') is-invalid @enderror" name="tingkat_prestasi_'+value+'" value="{{old('tingkat_prestasi_+value')}}" aria-label="Default select example">';
+                html += '<option selected value="">--Pilih Tingkat Prestasi--</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Sekolah") selected @endif value="Sekolah">Sekolah</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Wilayah") selected @endif value="Wilayah">Wilayah</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Kabupaten/kota") selected @endif value="Kabupaten/kota">Kabupaten/kota</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Provinsi") selected @endif value="Provinsi">Provinsi</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Nasional") selected @endif value="Nasional">Nasional</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Internasional") selected @endif value="Internasional">Internasional</option>';
+                html += '<option @if (old('tingkat_prestasi_+value') == "Lainnya") selected @endif value="Lainnya">Lainnya</option>';
+                html += '</select>';
+                html += '@error('tingkat_prestasi_+value')';
+                html += '<div class="invalid-feedback">';
+                html += '{{$message}}';
+                html += '</div>';
+                html += '@enderror';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="col-5">';
+                html += '<div class="mb-3">';
+                html += '<label for="nama_prestasi_'+value+'" class="form-label">Nama Prestasi</label>';
+                html += '<input type="text" class="form-control text-capitelize @error('nama_prestasi_+value') is-invalid @enderror" id="nama_prestasi_'+value+'" placeholder="E.g Olimpiade Matematika" name="nama_prestasi_'+value+'" value="{{old('nama_prestasi_+value')}}">';
+                html += '@error('nama_prestasi_+value')';
+                html += '<div class="invalid-feedback">';
+                html += '{{$message}}';
+                html += '</div>';
+                html += '@enderror';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="row">';
+                html += '<div class="col">';
+                html += '<div class="mb-3">';
+                html += '<label for="tahun_prestasi_'+value+'" class="form-label">Tahun</label>';
+                html += '<input type="text" class="form-control @error('tahun_prestasi_+value') is-invalid @enderror" id="tahun_prestasi_'+value+'" placeholder="E.g 1960" name="tahun_prestasi_'+value+'" value="{{old('tahun_prestasi_+value')}}">';
+                html += '@error('tahun_prestasi_+value')';
+                html += '<div class="invalid-feedback">';
+                html += '{{$message}}';
+                html += '</div>';
+                html += '@enderror';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="col">';
+                html += '<div class="mb-3">';
+                html += '<label for="penyelenggara_prestasi_'+value+'" class="form-label">Penyelenggara</label>';
+                html += '<input type="text" class="form-control text-capitelize @error('penyelenggara_prestasi_+value') is-invalid @enderror" id="penyelenggara_prestasi_'+value+'" placeholder="E.g Pemerintah Kab. Tasikmalaya" name="penyelenggara_prestasi_'+value+'" value="{{old('penyelenggara_prestasi_+value')}}">';
+                html += '@error('penyelenggara_prestasi_+value')';
+                html += '<div class="invalid-feedback">';
+                html += '{{$message}}';
+                html += '</div>';
+                html += '@enderror';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                // ini
+                html += '<div class="row my-3">';
+                html += '<div class="col">';
+                html += '<div class="input-group">';
+                html += '<div class="custom-file">';
+                html += '<label for="penyelenggara_prestasi_'+value+'" class="form-label">Sertifikat</label>';
+                html += '<input type="file" class="form-control @error('sertifikat_+value') is-invalid @enderror" id="sertifikat_'+value+'" name="sertifikat_'+value+'" aria-describedby="sertifikatHelp">';
+                html += '</div>';
+                html += '</div>';
+                html += '@error('sertifikat_+value')';
+                html += '<div class="text-danger">';
+                html += '<small>{{$message}}</small>';
+                html += '</div>';
+                html += '@enderror';
+                html += '<div id="sertifikatHelp" class="form-text">Ketentuan :</br>*Format file : JPG</br>*Ukuran File : 100 Kb-3000 Kb</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                // ini
+                html += '</div>';
+                html += '<button class="btn btn-danger btn-sm mb-3" onclick="remove_fields('+value+');" type="button">';
+                html += '<img src="{{ asset('Styles/IMG/delete_white_24dp.svg') }}" alt="add-icon">';
+                html += '</button>';
+
+                var divtest = document.createElement("div");
+                divtest.setAttribute("class", "removeclass"+value);
+                divtest.innerHTML = html;
+                var rid = 'removeclass'+value;
+
+                obj.appendChild(divtest);
+            };
+        });
+    </script> --}}
 @endsection
 
