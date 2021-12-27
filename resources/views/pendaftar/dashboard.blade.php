@@ -4,6 +4,7 @@
 
 @section('additional CSS')
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset ('/Styles/CSS/calendar.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 @endsection
 
@@ -42,6 +43,21 @@
                 {{-- End-News Cards --}}
             </div>
             <div class="col-4">
+                <div class="calendar">
+                    <div class="header">
+                        <a data-action="prev-month" href="javascript:void(0)" title="Previous Month"><i></i></a>
+                        <div class="text" data-render="month-year"></div>
+                        <a data-action="next-month" href="javascript:void(0)" title="Next Month"><i></i></a>
+                    </div>
+                    <div class="months" data-flow="left">
+                        <div class="month month-a">
+                            <div class="render render-a"></div>
+                        </div>
+                        <div class="month month-b">
+                            <div class="render render-b"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -49,4 +65,5 @@
 
 @section('additional JS')
     <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
+    <script src="{{ asset('Styles/JS/calendar.js')}}"></script>
 @endsection
