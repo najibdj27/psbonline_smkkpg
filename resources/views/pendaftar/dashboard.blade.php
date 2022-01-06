@@ -5,6 +5,7 @@
 @section('additional CSS')
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/sidebar.css')}}">
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/calendar.css')}}">
+    <link rel="stylesheet" href="{{asset ('/Styles/CSS/timeline.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 @endsection
 
@@ -55,6 +56,147 @@
                         </div>
                         <div class="month month-b">
                             <div class="render render-b"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="timeline">
+                        <div class="timeline__group">
+                            <span class="timeline__year time" aria-hidden="true">Semester Genap 2022</span>
+                            <div class="timeline__cards">
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-01-01">
+                                            <span class="time__day">1</span>
+                                            <span class="time__month">Jan</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Libur tahun baru masehi</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-01-10">
+                                            <span class="time__day">10</span>
+                                            <span class="time__month">Jan</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Hari pertama masuk sekolah</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-02-01">
+                                            <span class="time__day">1</span>
+                                            <span class="time__month">Feb</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur tahun baru imlek 2573</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-02-28">
+                                            <span class="time__day">28</span>
+                                            <span class="time__month">Feb</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur tahun Isro Mi'raj</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-03-03">
+                                            <span class="time__day">3</span>
+                                            <span class="time__month">Mar</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur hari raya Nyepi</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-03-07">
+                                            <span class="time__day">7 - 12</span>
+                                            <span class="time__month">Mar</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan Penilaian Tengah Semester</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-03-14">
+                                            <span class="time__day">14 - 19</span>
+                                            <span class="time__month">Mar</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan jeda tengah semester</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-04-01">
+                                            <span class="time__day">1 - 3</span>
+                                            <span class="time__month">Apr</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur awal Ramadan 1443 H.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-04-04">
+                                            <span class="time__day">4 - 23</span>
+                                            <span class="time__month">Apr</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Kegiatan penumbuhan budi pekerti/Smatren</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-04-04">
+                                            <span class="time__day">4 APR - 7</span>
+                                            <span class="time__month">Mei</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan waktu pelaksanaan Uji Kompetisi Keahlian SMK</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-04-15">
+                                            <span class="time__day">15</span>
+                                            <span class="time__month">Apr</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur wafat Isa Almasih</p>
+                                    </div>
+                                </div>
+                                <div class="timeline__card card">
+                                    <header class="card__header">
+                                        <time class="time" datetime="2022-04-25">
+                                            <span class="time__day">25 APR - 10</span>
+                                            <span class="time__month">Mei</span>
+                                        </time>
+                                    </header>
+                                    <div class="card__content">
+                                        <p>Prakiraan libur hari raya Idul Fitri 1443 H.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

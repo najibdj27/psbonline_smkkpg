@@ -1,5 +1,10 @@
 <header class="header" id="header">
-    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i></div>
+    <h1 class="text-uppercase">
+        @if(Route::is('dashboard_pendaftar')) Dashboard @endif
+        @if(Route::is('profile')) Profile @endif
+        @if(Route::is('messages')) Messages @endif
+    </h1>
     <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
 </header>
 <div class="l-navbar" id="nav-bar">

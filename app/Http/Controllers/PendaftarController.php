@@ -221,10 +221,12 @@ class PendaftarController extends Controller
     public function show()
     {
         $get_user_id = Auth::user()->id;
+        $user = Auth::user();
         $pendaftar = Pendaftar::firstWhere('user_id', (int) $get_user_id);
 
         $data = [
-            'pendaftar' => $pendaftar
+            'pendaftar' => $pendaftar,
+            'user' => $user
         ];
         return view('pendaftar.profile', $data);
     }
