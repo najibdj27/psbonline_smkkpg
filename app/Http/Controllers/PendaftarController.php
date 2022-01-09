@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use \App\Models\Pendaftar;
 use \App\Models\User;
+use \App\Models\Prestasi;
 
 class PendaftarController extends Controller
 {
@@ -223,10 +224,12 @@ class PendaftarController extends Controller
         $get_user_id = Auth::user()->id;
         $user = Auth::user();
         $pendaftar = Pendaftar::firstWhere('user_id', (int) $get_user_id);
+        $prestasi = Prestasi::where('pendaftar_id', $pendaftar->id)->get();
 
         $data = [
+            'user' => $user,
             'pendaftar' => $pendaftar,
-            'user' => $user
+            'prestasi' => $prestasi
         ];
         return view('pendaftar.profile', $data);
     }
@@ -373,7 +376,7 @@ class PendaftarController extends Controller
                 'pilihan_jurusan_1' => $request->jurusan_1,
                 'pilihan_jurusan_2' => $request->jurusan_2,
             ]);
-        return redirect()->route('profile')->with('status', 'Data Identitas berhasil diubah!');
+        return redirect()->route('profile')->with('sukses', 'Data Identitas berhasil diubah!');
     }
 
     /**

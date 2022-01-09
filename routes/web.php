@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendaftarController;
+use App\Http\Controllers\PrestasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::get('/profile', [PendaftarController::class, 'show'])->middleware('auth')
 Route::post('/daftar', [PendaftarController::class, 'store']);
 Route::patch('/pendaftar/{pendaftar}/{user}', [PendaftarController::class, 'update'])->middleware('auth');
 Route::get('/daftar', [PendaftarController::class, 'create'])->middleware('guest')->name('daftar');
+
+//Prestasi
+Route::post('/pendaftar/prestasi/{pendaftar}', [PrestasiController::class, 'store'])->middleware('auth');
+
 // Auth
 Route::get('/login', [PendaftarController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/login', [PendaftarController::class, 'authenticate']);
