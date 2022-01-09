@@ -1068,12 +1068,63 @@
 @endsection
 
 @section('additional JS')
-    @if (count($errors)>0)
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#modalIdentitas').modal('show');
-        });
-    </script>
+    @if(Str::contains($errors, [
+        'username',
+        'email',
+        'NISN',
+        'SKHUN', 
+        'noUN', 
+        'nomor_seri_ijazah', 
+        'NIK', 
+        'noRAL', 
+        'nama', 
+        'tanggal_lahir', 
+        'jenis_kelamin',
+        'tempat_lahir',
+        'agama',
+        'asal_sekolah',
+        'provinsi',
+        'kab_kota',
+        'kecamatan',
+        'kel_desa',
+        'dusun',
+        'alamat_lengkap',
+        'rt',
+        'rw',
+        'kode_pos',
+        'jenis_tinggal',
+        'no_telpon_rumah',
+        'no_hp',
+        'no_kps',
+        'no_kip',
+        'nama_ayah',
+        'tahun_lahir_ayah',
+        'pekerjaan_ayah',
+        'pendidikan_ayah',
+        'pendapatan_ayah',
+        'nama_ibu',
+        'tahun_lahir_ibu',
+        'pekerjaan_ibu',
+        'pendidikan_ibu',
+        'pendapatan_ibu',
+        'nama_wali',
+        'tahun_lahir_wali',
+        'pekerjaan_wali',
+        'pendidikan_wali',
+        'pendapatan_wali',
+        'tinggi_badan',
+        'berat_badan',
+        'jumlah_saudara_kandung',
+        'jarak_tempat_tinggal_ke_sekolah',
+        'waktu_tempuh_ke_sekolah',
+        'jurusan_1',
+        'jurusan_2',
+    ]))
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#modalIdentitas').modal('show');
+            });
+        </script>
     @endif
     <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
     <script src="{{ asset('Styles/JS/imagepreview.js')}}"></script>
