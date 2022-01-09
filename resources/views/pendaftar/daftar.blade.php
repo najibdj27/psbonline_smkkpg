@@ -64,10 +64,10 @@
                     </div>
                 </div>
             </div>
-            {{-- End-Group form 1 --}}
+
             {{-- Group form 2 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
-                <h4 class="mb-3">Identitas Peserta Didik</h4>
+                <h4 class="mb-3">Identitas Pribadi</h4>
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
@@ -84,7 +84,7 @@
                     <div class="col">
                         <div class="mb-3">
                             <label for="SKHUN" class="form-label">Nomor Seri SKHUN</label>
-                            <input type="text" class="form-control text-uppercase @error('NISN') is-invalid @enderror" id="SKHUN" name="SKHUN" value="{{old('SKHUN')}}">
+                            <input type="text" class="form-control text-uppercase @error('SKHUN') is-invalid @enderror" id="SKHUN" name="SKHUN" value="{{old('SKHUN')}}">
                             @error('SKHUN')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -410,7 +410,7 @@
                     </div>
                 </div>
             </div>
-            {{-- End-Group form 2 --}}
+
             {{-- Group form 3 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                 <h4 class="mb-3">Data Ayah Kandung</h4>
@@ -499,7 +499,7 @@
                     @enderror
                 </div>
             </div>
-            {{-- End-Group form 3 --}}
+
             {{-- Group form 4 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                 <h4 class="mb-3">Data Ibu Kandung</h4>
@@ -588,7 +588,7 @@
                     @enderror
                 </div>
             </div>
-            {{-- End-Group form 4 --}}
+
             {{-- Group form 5 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                 <h4 class="mb-3">Data Wali (Optional)</h4>
@@ -678,7 +678,6 @@
                     @enderror
                 </div>
             </div>
-            {{-- End-Group form 5 --}}
 
             {{-- Group Form 6 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
@@ -745,7 +744,6 @@
                     </div>
                 </div>
             </div>
-            {{-- End-Group Form 6 --}}
 
             {{-- Group Form 7 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
@@ -760,7 +758,6 @@
                     </button>
                 </div>
             </div>
-            {{-- End-Group Form 7 --}}
 
             {{-- Group Form 8 --}}
             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
@@ -800,39 +797,19 @@
                     </div>
                 </div>
             </div>
-            {{-- End-Group Form 8 --}}
 
             {{-- Button Daftar --}}
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Daftar</button>
             </div>
-            {{-- End-Button Daftar --}}
         </form>
     </div>
 @endsection
 
 @section('additional JS')
     <script src="{{ asset('Styles/JS/yearpicker.js')}}"></script>
+    <script src="{{ asset('Styles/JS/imagepreview.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#preview_profile_photo').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-            $("#profile_photo").change(function(){
-                readURL(this);
-            });
-        });
-    </script>
     <script>
         // add row
         var room = 0;
