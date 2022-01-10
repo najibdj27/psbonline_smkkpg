@@ -34,6 +34,7 @@ Route::get('/daftar', [PendaftarController::class, 'create'])->middleware('guest
 
 //Prestasi
 Route::post('/pendaftar/prestasi/{pendaftar}', [PrestasiController::class, 'store'])->middleware('auth');
+Route::delete('/pendaftar/prestasi/{prestasi}', [PrestasiController::class, 'destroy'])->middleware('auth');
 
 // Auth
 Route::get('/login', [PendaftarController::class, 'login'])->middleware('guest')->name('login');
