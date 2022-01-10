@@ -376,7 +376,7 @@
 
         <!-- Modal -->
         {{-- Modal Edit Identitas --}}
-        <form method="post" action="pendaftar/{{$pendaftar->id}}/{{$pendaftar->user_id}}" enctype="multipart/form-data">@method('patch') @csrf
+        <form method="post" action="pendaftar/{{$pendaftar->id}}/{{$pendaftar->user_id}}" enctype="multipart/form-data">@method('put') @csrf
             <div class="modal fade" id="modalIdentitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalIdentitasLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                     <div class="modal-content">

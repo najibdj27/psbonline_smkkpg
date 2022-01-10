@@ -29,7 +29,7 @@ Route::get('/check/{pass}', [PendaftarController::class, 'index']);
 Route::get('/dashboard', [PendaftarController::class, 'dashboard'])->middleware('auth')->name('dashboard_pendaftar');
 Route::get('/profile', [PendaftarController::class, 'show'])->middleware('auth')->name('profile');
 Route::post('/daftar', [PendaftarController::class, 'store']);
-Route::patch('/pendaftar/{pendaftar}/{user}', [PendaftarController::class, 'update'])->middleware('auth');
+Route::put('/pendaftar/{pendaftar}/{user}', [PendaftarController::class, 'update'])->middleware('auth');
 Route::get('/daftar', [PendaftarController::class, 'create'])->middleware('guest')->name('daftar');
 
 //Prestasi
