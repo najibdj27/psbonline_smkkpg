@@ -308,7 +308,7 @@ class PendaftarController extends Controller
             'berat_badan' => ['required', 'min:1', 'max:999', 'numeric'],
             'jumlah_saudara_kandung' => ['required', 'min:1', 'max:99', 'numeric'],
             'jarak_tempat_tinggal_ke_sekolah' => ['nullable', 'min:1', 'max:999', 'numeric'],
-            'waktu_tempuh_ke_sekolah' => ['nullable', 'min:1', 'max:999', 'numeric'],
+            'waktu_tempuh_ke_sekolah' => ['nullable', 'min:60', 'max:999', 'numeric'],
         ]);
         if ($request->profile_photo != null) {
             $new_image_name = time() . '-' . $request->file('profile_photo')->getClientOriginalName();
