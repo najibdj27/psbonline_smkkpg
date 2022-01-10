@@ -78,9 +78,30 @@ class PrestasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Prestasi $prestasi)
     {
-        //
+        if ($request->sertifikat != null) {
+            $new_image_name = time() . '-' . $request->file('sertifikat')->getClientOriginalName();
+            $request->sertifikat->move(public_path('Uploads/images/' . $request->username), $new_image_name);
+            Prestasi::where('id', $prestasi->id)
+                ->update([
+                    'jenis_prestasi' => $request->jenis_prestasi,
+                    'tingkat_prestasi' => $request->tingkat_prestasi,
+                    'nama_prestasi' => $request->nama_prestasi,
+                    'penyelenggara' => $request->penyelenggara_prestasi,
+                    'tahun' => $request->tahun_prestasi,
+                    'seritifkat_photo' => $new_image_name,
+                ]);
+        }
+        Prestasi::where('id', $prestasi->id)
+            ->update([
+                'jenis_prestasi' => $request->jenis_prestasi,
+                'tingkat_prestasi' => $request->tingkat_prestasi,
+                'nama_prestasi' => $request->nama_prestasi,
+                'penyelenggara' => $request->penyelenggara_prestasi,
+                'tahun' => $request->tahun_prestasi,
+            ]);
+        return redirect()->route('profile')->with('sukses', 'Data Prestasi berhasil diubah!');
     }
 
     /**

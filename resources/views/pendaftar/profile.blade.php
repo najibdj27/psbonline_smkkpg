@@ -213,13 +213,11 @@
                 <div class="row mt-4">
                     <div class="col-12">
                         <h3 class="fw-bold">Data Prestasi</h3>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Jenis</th>
-                                    <th scope="col">Tingkat</th>
                                     <th scope="col">Tahun</th>
                                     <th scope="col">Penyelenggara</th>
                                     <th scope="col">Action</th>
@@ -230,17 +228,132 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $prsts->nama_prestasi }}</td>
-                                    <td>{{ $prsts->jenis_prestasi }}</td>
-                                    <td>{{ $prsts->tingkat_prestasi }}</td>
                                     <td>{{ $prsts->tahun }}</td>
                                     <td>{{ $prsts->penyelenggara }}</td>
                                     <td>
-                                        <form method="post" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
-                                            <button type="submit" class="btn btn-outline-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                        <div class="d-grid gap-2 d-md-block">
+                                            <form method="post" class="d-inline" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-outline-primary " type="button" data-bs-toggle="modal" data-bs-target="#modalEditDataPrestasi{{$prsts->id}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                 </svg>
                                             </button>
+                                        </div>
+                                        {{-- Modal Edit Data Prestasi --}}
+                                        <form method="post" action="pendaftar/prestasi/{{$prsts->id}}" enctype="multipart/form-data">@method('put') @csrf
+                                            <div class="modal fade" id="modalEditDataPrestasi{{$prsts->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditDataPrestasi{{$prsts->id}}Label" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalTambahDataPrestasiLabel">
+                                                                Edit Data Prestasi
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{-- Group Form --}}
+                                                            <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <div class="mb-3">
+                                                                            <label for="jenis_prestasi_1" class="form-label">Jenis Prestasi</label>
+                                                                            <select class="form-select @error('jenis_prestasi') is-invalid @enderror" name="jenis_prestasi" value="{{ $prsts->jenis_prestasi }}" aria-label="Default select example">
+                                                                                <option selected value="">--Jenis Prestasi--</option>
+                                                                                <option @if ( $prsts->jenis_prestasi == "Kelompok") selected @endif value="Kelompok">Kelompok</option>
+                                                                                <option @if ( $prsts->jenis_prestasi == "Individu") selected @endif value="Individu">Individu</option>
+                                                                            </select>
+                                                                            @error('jenis_prestasi')
+                                                                            <div class="invalid-feedback">
+                                                                                {{$message}}
+                                                                            </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <div class="mb-3">
+                                                                            <label for="tingkat_prestasi" class="form-label">Tingkat</label>
+                                                                            <select class="form-select @error('tingkat_prestasi') is-invalid @enderror" name="tingkat_prestasi" value="{{ $prsts->tingkat_prestasi }}" aria-label="Default select example">
+                                                                                <option selected value="">--Pilih Tingkat Prestasi--</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Sekolah") selected @endif value="Sekolah">Sekolah</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Wilayah") selected @endif value="Wilayah">Wilayah</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Kabupaten/kota") selected @endif value="Kabupaten/kota">Kabupaten/kota</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Provinsi") selected @endif value="Provinsi">Provinsi</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Nasional") selected @endif value="Nasional">Nasional</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Internasional") selected @endif value="Internasional">Internasional</option>
+                                                                                <option @if ($prsts->tingkat_prestasi == "Lainnya") selected @endif value="Lainnya">Lainnya</option>
+                                                                            </select>
+                                                                            @error('tingkat_prestasi')
+                                                                            <div class="invalid-feedback">
+                                                                                {{$message}}
+                                                                            </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-5">
+                                                                        <div class="mb-3">
+                                                                        <label for="nama_prestasi" class="form-label">Nama Prestasi</label>
+                                                                        <input type="text" class="form-control text-capitelize @error('nama_prestasi') is-invalid @enderror" id="nama_prestasi" placeholder="E.g Olimpiade Matematika" name="nama_prestasi" value="{{ $prsts->nama_prestasi }}">
+                                                                        @error('nama_prestasi')
+                                                                        <div class="invalid-feedback">
+                                                                        {{$message}}
+                                                                        </div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col mb-3">
+                                                                        <label for="tahun_prestasi" class="form-label">Tahun</label>
+                                                                        <input type="text" class="form-control @error('tahun_prestasi') is-invalid @enderror" id="tahun_prestasi" placeholder="E.g 1960" name="tahun_prestasi" value="{{ $prsts->tahun }}">
+                                                                        @error('tahun_prestasi')
+                                                                        <div class="invalid-feedback">
+                                                                            {{$message}}
+                                                                        </div>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="mb-3">
+                                                                            <label for="penyelenggara_prestasi" class="form-label">Penyelenggara</label>
+                                                                            <input type="text" class="form-control text-capitelize @error('penyelenggara_prestasi') is-invalid @enderror" id="penyelenggara_prestasi" placeholder="E.g Pemerintah Kab. Tasikmalaya" name="penyelenggara_prestasi" value="{{ $prsts->penyelenggara }}">
+                                                                            @error('penyelenggara_prestasi')
+                                                                            <div class="invalid-feedback">
+                                                                                {{$message}}
+                                                                            </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row my-3">
+                                                                    <div class="col">
+                                                                        <div class="input-group">
+                                                                            <div class="custom-file">
+                                                                                <label for="sertifikat" class="form-label">Sertifikat</label>
+                                                                                <input type="file" class="form-control @error('sertifikat') is-invalid @enderror" id="sertifikat" name="sertifikat" aria-describedby="sertifikatHelp">
+                                                                            </div>
+                                                                        </div>
+                                                                        @error('sertifikat')
+                                                                        <div class="text-danger">
+                                                                            <small>{{$message}}</small>
+                                                                        </div>
+                                                                        @enderror
+                                                                        <div id="sertifikatHelp" class="form-text">Ketentuan :</br>*Format file : JPG</br>*Ukuran File : 100 Kb-3000 Kb</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </form>
                                     </td>
                                 </tr>
@@ -249,13 +362,6 @@
                         </table>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalEditDataPrestasi">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                            Edit Data Prestasi
-                        </button>
                         <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#modalTambahDataPrestasi">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1144,12 +1250,6 @@
                 </div>
             </div>
         </form>
-        {{-- Modal Edit Data Prestasi --}}
-        <form method="post" action="pendaftar/prestasi/edit/{{$pendaftar->id}}" enctype="multipart/form-data">@method('patch') @csrf
-
-        </form>
-
-
     </div>
 @endsection
 
