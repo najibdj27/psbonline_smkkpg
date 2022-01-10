@@ -232,13 +232,11 @@
                                     <td>{{ $prsts->penyelenggara }}</td>
                                     <td>
                                         <div class="d-grid gap-2 d-md-block">
-                                            <form method="post" class="d-inline" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
-                                                <button type="submit" class="btn btn-outline-danger">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                                    </svg>
-                                                </button>
-                                            </form>
+                                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#konfirmasiHapusDataPrestasi{{ $prsts->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                            </button>
                                             <button class="btn btn-outline-primary " type="button" data-bs-toggle="modal" data-bs-target="#modalEditDataPrestasi{{$prsts->id}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -246,6 +244,27 @@
                                                 </svg>
                                             </button>
                                         </div>
+                                        {{-- Modal Konfirmasi Hapus Data Prestasi --}}
+                                        <!-- Modal -->
+                                        <form method="post" class="d-inline" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
+                                            <div class="modal fade" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label">Hapus {{ $prsts->nama_prestasi }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah anda yakin ingin menghapus {{ $prsts->nama_prestasi }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                         {{-- Modal Edit Data Prestasi --}}
                                         <form method="post" action="pendaftar/prestasi/{{$prsts->id}}" enctype="multipart/form-data">@method('put') @csrf
                                             <div class="modal fade" id="modalEditDataPrestasi{{$prsts->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditDataPrestasi{{$prsts->id}}Label" aria-hidden="true">
