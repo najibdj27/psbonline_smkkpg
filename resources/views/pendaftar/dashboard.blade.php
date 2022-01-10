@@ -11,8 +11,9 @@
 
 @section('content')
     @include('layout.sidebar')
-    <h1>Selamat Datang <span class="fs-2">{{$pendaftar->nama}}!</span></h1>
-    <div class="container">
+    <h1 class="">Selamat Datang <span class="fs-2">{{$pendaftar->nama}}!</span></h1>
+    <div class="container my-4">
+        <h1 class="">Selamat Datang <span class="fs-2">{{$pendaftar->nama}}!</span></h1>
         <div class="row">
             <div class="col-8">
                 <h3 class="pt-3">Berita Terkini</h3>

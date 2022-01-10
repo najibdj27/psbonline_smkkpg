@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\PesanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::get('/daftar', [PendaftarController::class, 'create'])->middleware('guest
 Route::post('/pendaftar/prestasi/{pendaftar}', [PrestasiController::class, 'store'])->middleware('auth');
 Route::delete('/pendaftar/prestasi/{prestasi}', [PrestasiController::class, 'destroy'])->middleware('auth');
 Route::put('/pendaftar/prestasi/{prestasi}', [PrestasiController::class, 'update'])->middleware('auth');
+
+//Pesan
+Route::get('/messages', [PesanController::class, 'pendaftar'])->middleware('auth')->name('messages');
 
 // Auth
 Route::get('/login', [PendaftarController::class, 'login'])->middleware('guest')->name('login');

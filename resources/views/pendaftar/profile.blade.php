@@ -10,7 +10,7 @@
 @section('content')
     @include('layout.sidebar')
     @include('layout.alert')
-    <div class="container my-4">
+    <div class="container">
         <div class="row">
             <div class="col-4 mt-4">
                 <div class="photo rounded overflow-hidden ms-4" style="height:300px; width: 300px;">
@@ -380,7 +380,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="d-grid gap-2 d-md-flex justify-content-end">
                         <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#modalTambahDataPrestasi">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
