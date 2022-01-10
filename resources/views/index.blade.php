@@ -11,7 +11,7 @@
 
 @section('content')
     @include('layout.navbar')
-    @include('layout.flash')
+    @include('layout.alert')
     <header>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
