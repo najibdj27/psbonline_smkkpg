@@ -1,3 +1,10 @@
+{{-- Add this CSS  --}}
+{{-- <link rel="stylesheet" href="{{asset ('/Styles/CSS/sidebar.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"> --}}
+
+{{-- Add this JS --}}
+{{-- <script src="{{ asset('Styles/JS/sidebar.js')}}"></script> --}}
+
 <header class="header bg-secondary" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' style="color: white" id="header-toggle"></i></div>
     <h1 class=" text-light">
