@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\User;
 use \App\Models\Admin;
+use \App\Models\Setting;
 
 class AdminController extends Controller
 {
@@ -19,6 +20,42 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function settings()
+    {
+        $setting = Setting::firstWhere('id', 1);
+        $data = [
+            'setting' => $setting
+        ];
+        return view('admin.settings', $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function settings_update(Request $request)
+    {
+        $request->validate([
+            'tahun_pendaftaran' => ['required', 'regex:/^[0-9]+/'],
+            'gelombang_pendaftaran' => ['required']
+        ]);
+
+        Setting::where('id', 1)
+            ->update([
+                'tahun_pendaftaran' => $request->tahun_pendaftaran,
+                'gelombang_pendaftaran' => $request->gelombang_pendaftaran
+            ]);
+        return redirect()->route('settings_pendaftaran')->with('sukses', 'Setting berhasil diperbaharui!');
+    }
+
+
 
     /**
      * Display a listing of the resource.

@@ -50,3 +50,7 @@ Route::get('/admin/login', [AdminController::class, 'login'])->middleware('guest
 Route::post('/login', [PendaftarController::class, 'authenticate']);
 Route::post('admin/login', [AdminController::class, 'authenticate']);
 Route::get('/logout', [PendaftarController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Settings
+Route::get('admin/settings', [AdminController::class, 'settings'])->middleware('auth')->name('settings_pendaftaran');
+Route::put('admin/settings', [AdminController::class, 'settings_update']);

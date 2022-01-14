@@ -4,6 +4,7 @@
         @if(Route::is('dashboard_admin')) Dashboard @endif
         @if(Route::is('profile_admin')) Profile @endif
         @if(Route::is('pendaftaran_admin')) Pendaftaran @endif
+        @if(Route::is('settings_pendaftaran')) Settings @endif
     </h1>
     <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
 </header>
@@ -15,17 +16,21 @@
                 <span class="nav_logo-name">SMK KPG</span>
             </a>
             <div class="nav_list">
-                <a href="/dashboard" class="nav_link @if(Route::is('dashboard_admin')) active @endif">
+                <a href="/admin/dashboard" class="nav_link @if(Route::is('dashboard_admin')) active @endif">
                     <i class='bx bx-grid-alt nav_icon'></i>
                     <span class="nav_name">Dashboard</span>
                 </a>
-                <a href="/profile" class="nav_link @if(Route::is('profile_admin')) active @endif">
+                <a href="/admin/profile" class="nav_link @if(Route::is('profile_admin')) active @endif">
                     <i class='bx bx-user nav_icon'></i>
                     <span class="nav_name">Profil</span>
                 </a>
-                <a href="/pendaftaran" class="nav_link @if(Route::is('pendaftaran_admin')) active @endif">
+                <a href="/admin/pendaftaran" class="nav_link @if(Route::is('pendaftaran_admin')) active @endif">
                     <i class='bx bxs-file-plus nav_icon'></i>
                     <span class="nav_name">Pendaftaran</span>
+                </a>
+                <a href="/admin/settings" class="nav_link @if(Route::is('settings_pendaftaran')) active @endif">
+                    <i class='bx bxs-edit nav_icon'></i>
+                    <span class="nav_name">Settings</span>
                 </a>
             </div>
         </div>
