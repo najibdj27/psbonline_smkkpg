@@ -12,10 +12,15 @@
             <div class="col-sm-8 vh-100">
                 <div class="d-flex h-100">
                     <div class="m-auto">
+                        <h1 class="text-center">
+                            <b>Administrasi</b>
+                        </h1>
                         <div class="d-flex mb-3">
                             <img class="mx-auto" src="http://s.sim.siap-online.com//upload/sekolah/20268064.150206152145.png" alt="">
                         </div>
-                        <h1 class="text-center">PSB Online</br>SMK Komunika Prestasi Gentur</h1>
+                        <h1 class="text-center">
+                            PSB Online</br>SMK Komunika Prestasi Gentur
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +28,7 @@
                 <div class="d-flex h-100">
                     <div class="m-auto">
                         <form method="post" class="needs-validation">@csrf
-                            <input type="hidden" name="role" value="Pendaftar">
+                            <input type="hidden" name="role" value="Admin">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Alamat Email</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" name="email" value="{{old('email')}}" aria-describedby="emailHelp">

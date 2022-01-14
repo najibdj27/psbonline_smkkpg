@@ -46,6 +46,14 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ],
+        'pendaftar' => [
+            'driver' => 'session',
+            'provider' => 'pendaftar'
+        ],
     ],
 
     /*
@@ -70,6 +78,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'pendaftar' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pendaftar::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

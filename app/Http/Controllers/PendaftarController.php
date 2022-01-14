@@ -37,6 +37,7 @@ class PendaftarController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email',],
             'password' => ['required'],
+            'role' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -210,7 +211,7 @@ class PendaftarController extends Controller
         ]);
         $pendaftar->user()->associate($this_user);
         $pendaftar->save();
-        return redirect('/')->with('berhasil', 'Pendaftaran Berhasil!');
+        return redirect('/')->with('sukses', 'Pendaftaran Berhasil!');
     }
 
     /**
