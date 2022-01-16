@@ -26,6 +26,8 @@ Route::get('/check/{pass}', [PendaftarController::class, 'index']);
 
 //Admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('dashboard_admin');
+Route::get('/admin/profile', [AdminController::class, 'show'])->middleware('auth')->name('profile_admin');
+Route::put('/admin/{admin}/{user}', [AdminController::class, 'update'])->middleware('auth');
 Route::get('/admin/create', [AdminController::class, 'create'])->name('create_admin');
 Route::post('/admin/create', [AdminController::class, 'store']);
 

@@ -150,9 +150,17 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $get_user_id = Auth::user()->id;
+        $user = Auth::user();
+        $admin = Admin::firstWhere('user_id', (int)$get_user_id);
+
+        $data = [
+            'user' => $user,
+            'admin' => $admin
+        ];
+        return view('admin.profile', $data);
     }
 
     /**
@@ -173,9 +181,46 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Admin $admin, User $user)
     {
-        //
+        $request->validate([
+            // Form Group 1
+            'username' => ['required', 'unique:App\Models\User,username,' . $user->id],
+            'email' => ['required', 'email', 'unique:App\Models\User,email,' . $user->id],
+            'profile_photo' => ['image', 'dimensions:ratio=2/3', 'between:100,300', 'mimes:jpg,jpeg'],
+
+            // Form Group 2
+            'nama' => ['required'],
+            'jenis_kelamin' => ['required'],
+            'alamat_lengkap' => ['required'],
+            'no_hp' => ['required', 'regex:/^[0-9]+/', 'size:12'],
+        ]);
+
+        if ($request->profile_photo != null) {
+            $new_image_name = time() . '-' . $request->file('profile_photo')->getClientOriginalName();
+            $request->profile_photo->move(public_path('Uploads/images/' . $request->username), $new_image_name);
+            User::where('id', $user->id)
+                ->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'profile_photo' => $new_image_name,
+                ]);
+        }
+
+        User::where('id', $user->id)
+            ->update([
+                'username' => $request->username,
+                'email' => $request->email,
+            ]);
+
+        Admin::where('id', $admin->id)
+            ->update([
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'nomor_hp' => $request->no_hp,
+                'alamat' => $request->alamat_lengkap
+            ]);
+        return redirect()->route('profile_admin')->with('sukses', 'Data berhasil dirubah!');
     }
 
     /**

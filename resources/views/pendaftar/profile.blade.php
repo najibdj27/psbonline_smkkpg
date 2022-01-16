@@ -395,7 +395,7 @@
 
         <!-- Modal -->
         {{-- Modal Edit Identitas --}}
-        <form method="post" action="pendaftar/{{$pendaftar->id}}/{{$pendaftar->user_id}}" enctype="multipart/form-data">@method('put') @csrf
+        <form method="post" action="/pendaftar/{{$pendaftar->id}}/{{$pendaftar->user_id}}" enctype="multipart/form-data">@method('put') @csrf
             <div class="modal fade" id="modalIdentitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalIdentitasLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                     <div class="modal-content">
@@ -438,6 +438,7 @@
                             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                                 <h4 class="mb-3">Identitas Pribadi</h4>
                                 <div class="row">
+                                    {{-- NISN --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="NISN" class="form-label">NISN</label>
@@ -450,6 +451,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- SKUHN --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="SKHUN" class="form-label">Nomor Seri SKHUN</label>
@@ -461,6 +463,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Nomor UN --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="noUN" class="form-label">Nomor UN</label>
@@ -474,6 +477,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Nomor Seri Ijazah --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="nomor_seri_ijazah" class="form-label">Nomor Seri ijazah</label>
@@ -485,6 +489,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- NIK --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="NIK" class="form-label">NIK</label>
@@ -496,6 +501,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- No. Registrasi Akta Lahir --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="noRAL" class="form-label">No. Registrasi Akta Lahir</label>
@@ -509,11 +515,13 @@
                                     </div>
                                 </div>
                                 <div class="row my-3">
+                                    {{-- Photo Profile Preview --}}
                                     <div class="col-3">
                                         <div class="card position-relative" style="padding-bottom: 226.5px">
                                             <img src="{{asset('Uploads/images/'.Auth::user()->username.'/'.Auth::user()->profile_photo)}}" id="preview_profile_photo" class="card-img-top position-absolute" alt="">
                                         </div>
                                     </div>
+                                    {{-- Photo Profile Form --}}
                                     <div class="col">
                                         <div class="input-group ">
                                             <div class="custom-file">
@@ -529,6 +537,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Nama  --}}
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama Lengkap</label>
@@ -540,6 +549,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Tanggal Lahir --}}
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
@@ -551,6 +561,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Jenis Kelamin --}}
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label for="jenis_kelamin" class="form-label">Jenis kelamin</label>
@@ -568,6 +579,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Tempat Lahir --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
@@ -579,6 +591,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Agama --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="agama" class="form-label">Agama</label>
@@ -598,16 +611,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="asal_sekolah" class="form-label">Asal Sekolah</label>
-                                    <input type="text" class="form-control text-uppercase @error('asal_sekolah') is-invalid @enderror" id="asal_sekolah" name="asal_sekolah" value="{{$pendaftar->asal_sekolah}}">
-                                    @error('asal_sekolah')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                    @enderror
+                                <div class="row">
+                                    {{-- Asal Sekolah --}}
+                                    <div class="mb-3">
+                                        <label for="asal_sekolah" class="form-label">Asal Sekolah</label>
+                                        <input type="text" class="form-control text-uppercase @error('asal_sekolah') is-invalid @enderror" id="asal_sekolah" name="asal_sekolah" value="{{$pendaftar->asal_sekolah}}">
+                                        @error('asal_sekolah')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Provinsi --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="provinsi" class="form-label">Provinsi</label>
@@ -619,6 +636,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Kabupaten/kota --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="kab_kota" class="form-label">Kabupaten / Kota</label>
@@ -630,6 +648,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Kecamatan --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="kecamatan" class="form-label">Kecamatan</label>
@@ -643,6 +662,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Kelurahan/desa --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="kel_desa" class="form-label">Kelurahan / Desa</label>
@@ -654,6 +674,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Dusun/kampung --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="dusun" class="form-label">Dusun / Kampung (optional)</label>
@@ -667,6 +688,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Alamat Lengkap --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="alamat_lengkap" class="form-label">Alamat lengkap</label>
@@ -678,6 +700,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- RT --}}
                                     <div class="col-2">
                                         <div class="mb-3">
                                             <label for="rt" class="form-label">RT</label>
@@ -689,6 +712,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- RW --}}
                                     <div class="col-2">
                                         <div class="mb-3">
                                             <label for="rw" class="form-label">RW</label>
@@ -700,6 +724,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Kode POS --}}
                                     <div class="col-2">
                                         <div class="mb-3">
                                             <label for="kode_pos" class="form-label">Kode POS</label>
@@ -713,6 +738,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Jenis Tinggal --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="jenis_tinggal" class="form-label">Jenis tinggal</label>
@@ -729,6 +755,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Nomor Telpon Rumah --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="no_telpon_rumah" class="form-label">No. Telepon Rumah (optional)</label>
@@ -740,6 +767,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Nomor Handphone --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="no_hp" class="form-label">No. HP</label>
@@ -753,6 +781,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Nomor KPS  --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="no_kps" class="form-label">No. KPS (optional)</label>
@@ -765,6 +794,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Nomor KIP --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="no_kip" class="form-label">No. KIP (optional)</label>
@@ -784,6 +814,7 @@
                             <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
                                 <h4 class="mb-3">Data Ayah Kandung</h4>
                                 <div class="row">
+                                    {{-- Nama Ayah --}}
                                     <div class="col-8">
                                         <div class="mb-3">
                                             <label for="nama_ayah" class="form-label">Nama ayah</label>
@@ -795,6 +826,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Tahun Lahir Ayah --}}
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label for="tahun_lahir_ayah" class="form-label">Tahun lahir</label>
@@ -808,6 +840,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- Pekerjaan Ayah --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="pekerjaan_ayah" class="form-label">Pekerjaan</label>
@@ -831,6 +864,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Pendidikan Ayah --}}
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="pendidikan_ayah" class="form-label">Pendidikan</label>
@@ -850,22 +884,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="pendapatan_ayah" class="form-label">Pendapatan ayah</label>
-                                    <select class="form-select @error('pendapatan_ayah') is-invalid @enderror" name="pendapatan_ayah" value="{{$pendaftar->penghasilan_ayah}}" aria-label="Default select example">
-                                        <option selected value="">--Pilih Pendapatan--</option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "< Rp. 1.000.000") selected @endif value="< Rp. 1.000.000">< Rp. 1.000.000</option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "Rp. 1.000.000 - Rp. 2.000.000") selected @endif value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000 </option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "Rp. 2.000.000 - Rp. 3.000.000") selected @endif value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000 </option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "Rp. 3.000.000 - Rp. 4.000.000") selected @endif value="Rp. 3.000.000 - Rp. 4.000.000">Rp. 3.000.000 - Rp. 4.000.000 </option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "Rp. 4.000.000 - Rp. 5.000.000") selected @endif value="Rp. 4.000.000 - Rp. 5.000.000">Rp. 4.000.000 - Rp. 5.000.000 </option>
-                                        <option @if ($pendaftar->penghasilan_ayah == "> Rp. 5.000.000") selected @endif value="> Rp. 5.000.000">> Rp. 5.000.000 </option>
-                                    </select>
-                                    @error('pendapatan_ayah')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                    @enderror
+                                <div class="row">
+                                    {{-- Pendapatan Ayah --}}
+                                    <div class="mb-3">
+                                        <label for="pendapatan_ayah" class="form-label">Pendapatan ayah</label>
+                                        <select class="form-select @error('pendapatan_ayah') is-invalid @enderror" name="pendapatan_ayah" value="{{$pendaftar->penghasilan_ayah}}" aria-label="Default select example">
+                                            <option selected value="">--Pilih Pendapatan--</option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "< Rp. 1.000.000") selected @endif value="< Rp. 1.000.000">< Rp. 1.000.000</option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "Rp. 1.000.000 - Rp. 2.000.000") selected @endif value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000 </option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "Rp. 2.000.000 - Rp. 3.000.000") selected @endif value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000 </option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "Rp. 3.000.000 - Rp. 4.000.000") selected @endif value="Rp. 3.000.000 - Rp. 4.000.000">Rp. 3.000.000 - Rp. 4.000.000 </option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "Rp. 4.000.000 - Rp. 5.000.000") selected @endif value="Rp. 4.000.000 - Rp. 5.000.000">Rp. 4.000.000 - Rp. 5.000.000 </option>
+                                            <option @if ($pendaftar->penghasilan_ayah == "> Rp. 5.000.000") selected @endif value="> Rp. 5.000.000">> Rp. 5.000.000 </option>
+                                        </select>
+                                        @error('pendapatan_ayah')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
