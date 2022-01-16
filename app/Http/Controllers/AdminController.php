@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function settings_update(Request $request)
     {
         $request->validate([
-            'tahun_pendaftaran' => ['required', 'regex:/^[0-9]+/'],
+            'tahun_pendaftaran' => ['required', 'regex:/^[0-9]+/', 'digits_between:1,4', 'numeric'],
             'gelombang_pendaftaran' => ['required']
         ]);
 

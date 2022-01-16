@@ -121,5 +121,12 @@
 @endsection
 
 @section('additional JS')
-        <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
+    @if ($errors->any())
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#settingPendaftaran').modal('show');
+            });
+        </script>
+    @endif
+    <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
 @endsection
