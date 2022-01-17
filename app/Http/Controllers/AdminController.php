@@ -20,10 +20,17 @@ class AdminController extends Controller
     public function index()
     {
         $pendaftar = Pendaftar::all();
+        $settings = Setting::firstWhere('id', 1);
+        $pendaftar_gelombang_ini = Pendaftar::firstWhere('gelombang_pendaftaran', $settings->gelombang_pendaftaran);
         $data = [
-            'pendaftar' => $pendaftar
+            'pendaftar' => $pendaftar,
+            'pendaftar_gelombang_ini' => $pendaftar_gelombang_ini,
+            'settings' => $settings
         ];
         return view('admin.dashboard', $data);
+        // return count($pendaftar_gelombang_ini);
+        // return array($pendaftar_gelombang_ini);
+        // return $pendaftar_gelombang_ini;
     }
 
     /**
