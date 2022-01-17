@@ -18,6 +18,7 @@
             <div class="col-3">
             </div>
             <div class="col-9">
+                {{-- Tabel daftar pendaftar --}}
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
@@ -273,7 +274,11 @@
                                                 <i class='bx bx-x'></i>
                                                 Close
                                             </button>
-                                            <button type="button" class="btn btn-primary" onclick="printJS('printJS-pendaftar{{$pndftr->id}}', 'html')">
+                                            <button type="button" class="btn btn-primary" onclick="printJS({
+                                                printable: 'printJS-pendaftar{{$pndftr->id}}', 
+                                                type: 'html',
+                                                css: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
+                                                })">
                                                 <i class='bx bxs-printer'></i>
                                                 Print Form
                                             </button>
@@ -286,12 +291,50 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{-- Tabel daftar pendaftar --}}
+                <table class="table table-striped table-bordered border-dark table-responsive position-absolute" id="printJS-pendaftarTable" style="visibility: hidden">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Alamat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pendaftar as $pndftr)
+                        <tr>
+                            <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{$pndftr->nama}}</td>
+                            <td>{{$pndftr->jenis_kelamin}}</td>
+                            <td>{{$pndftr->alamat}} RT. {{$pndftr->rt}} RW. {{$pndftr->rw}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" 
+                onclick="printJS({
+                    printable: 'printJS-pendaftarTable', 
+                    type: 'html',
+                    style: '#printJS-pendaftarTable {visibility: visible;!important}',
+                    css: ['https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'],
+                    })">
+                    <i class='bx bxs-printer'></i>
+                    Print Form
+                </button>
             </div>
         </div>
     </div>
 @endsection
 
 @section('additional JS')
+    {{-- <script type="text/javascript">
+    $('document').ready(function () { 
+        $("#printJS-table").click(function(){
+            $("#printJS-pendaftarTable").removeClass("d-none");
+        });
+    });
+    </script> --}}
     <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
     <script src="{{ asset('Styles/JS/print.min.js')}}"></script>
 @endsection
