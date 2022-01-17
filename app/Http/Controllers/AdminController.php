@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use \App\Models\User;
 use \App\Models\Admin;
 use \App\Models\Setting;
+use \App\Models\Pendaftar;
 
 class AdminController extends Controller
 {
@@ -18,7 +19,30 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $pendaftar = Pendaftar::all();
+        $data = [
+            'pendaftar' => $pendaftar
+        ];
+        return view('admin.dashboard', $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pendaftaran()
+    {
+        $pendaftar = Pendaftar::all();
+        foreach ($pendaftar as $pndftr) {
+            $users = User::where('id', '=', $pndftr->user_id)->get();
+        }
+        $data = [
+            'pendaftar' => $pendaftar,
+            'users' => $users,
+        ];
+        return view('admin.pendaftaran', $data);
+        // return $user;
     }
 
     /**

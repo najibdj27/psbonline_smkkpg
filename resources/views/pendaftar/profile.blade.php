@@ -243,137 +243,136 @@
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                 </svg>
                                             </button>
-                                        </div>
-                                        {{-- Modal Konfirmasi Hapus Data Prestasi --}}
-                                        <!-- Modal -->
-                                        <form method="post" class="d-inline" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
-                                            <div class="modal fade" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label">Hapus {{ $prsts->nama_prestasi }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Apakah anda yakin ingin menghapus {{ $prsts->nama_prestasi }}?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                        <button type="submit" class="btn btn-primary">Yes</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        {{-- Modal Edit Data Prestasi --}}
-                                        <form method="post" action="pendaftar/prestasi/{{$prsts->id}}" enctype="multipart/form-data">@method('put') @csrf
-                                            <div class="modal fade" id="modalEditDataPrestasi{{$prsts->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditDataPrestasi{{$prsts->id}}Label" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                                                    <div class="modal-content">
+                                            {{-- Modal Konfirmasi Hapus Data Prestasi --}}
+                                            <form method="post" class="d-inline" action="pendaftar/prestasi/{{ $prsts->id }}">@method('delete')@csrf
+                                                <div class="modal fade" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalTambahDataPrestasiLabel">
-                                                                Edit Data Prestasi
-                                                            </h5>
+                                                            <h5 class="modal-title" id="konfirmasiHapusDataPrestasi{{ $prsts->id }}Label">Hapus {{ $prsts->nama_prestasi }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            {{-- Group Form --}}
-                                                            <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
-                                                                <div class="row">
-                                                                    <div class="col-3">
-                                                                        <div class="mb-3">
-                                                                            <label for="jenis_prestasi_1" class="form-label">Jenis Prestasi</label>
-                                                                            <select class="form-select @error('jenis_prestasi') is-invalid @enderror" name="jenis_prestasi" value="{{ $prsts->jenis_prestasi }}" aria-label="Default select example">
-                                                                                <option selected value="">--Jenis Prestasi--</option>
-                                                                                <option @if ( $prsts->jenis_prestasi == "Kelompok") selected @endif value="Kelompok">Kelompok</option>
-                                                                                <option @if ( $prsts->jenis_prestasi == "Individu") selected @endif value="Individu">Individu</option>
-                                                                            </select>
-                                                                            @error('jenis_prestasi')
-                                                                            <div class="invalid-feedback">
-                                                                                {{$message}}
-                                                                            </div>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="mb-3">
-                                                                            <label for="tingkat_prestasi" class="form-label">Tingkat</label>
-                                                                            <select class="form-select @error('tingkat_prestasi') is-invalid @enderror" name="tingkat_prestasi" value="{{ $prsts->tingkat_prestasi }}" aria-label="Default select example">
-                                                                                <option selected value="">--Pilih Tingkat Prestasi--</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Sekolah") selected @endif value="Sekolah">Sekolah</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Wilayah") selected @endif value="Wilayah">Wilayah</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Kabupaten/kota") selected @endif value="Kabupaten/kota">Kabupaten/kota</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Provinsi") selected @endif value="Provinsi">Provinsi</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Nasional") selected @endif value="Nasional">Nasional</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Internasional") selected @endif value="Internasional">Internasional</option>
-                                                                                <option @if ($prsts->tingkat_prestasi == "Lainnya") selected @endif value="Lainnya">Lainnya</option>
-                                                                            </select>
-                                                                            @error('tingkat_prestasi')
-                                                                            <div class="invalid-feedback">
-                                                                                {{$message}}
-                                                                            </div>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-5">
-                                                                        <div class="mb-3">
-                                                                        <label for="nama_prestasi" class="form-label">Nama Prestasi</label>
-                                                                        <input type="text" class="form-control text-capitelize @error('nama_prestasi') is-invalid @enderror" id="nama_prestasi" placeholder="E.g Olimpiade Matematika" name="nama_prestasi" value="{{ $prsts->nama_prestasi }}">
-                                                                        @error('nama_prestasi')
-                                                                        <div class="invalid-feedback">
-                                                                        {{$message}}
-                                                                        </div>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col mb-3">
-                                                                        <label for="tahun_prestasi" class="form-label">Tahun</label>
-                                                                        <input type="text" class="form-control @error('tahun_prestasi') is-invalid @enderror" id="tahun_prestasi" placeholder="E.g 1960" name="tahun_prestasi" value="{{ $prsts->tahun }}">
-                                                                        @error('tahun_prestasi')
-                                                                        <div class="invalid-feedback">
-                                                                            {{$message}}
-                                                                        </div>
-                                                                        @enderror
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="mb-3">
-                                                                            <label for="penyelenggara_prestasi" class="form-label">Penyelenggara</label>
-                                                                            <input type="text" class="form-control text-capitelize @error('penyelenggara_prestasi') is-invalid @enderror" id="penyelenggara_prestasi" placeholder="E.g Pemerintah Kab. Tasikmalaya" name="penyelenggara_prestasi" value="{{ $prsts->penyelenggara }}">
-                                                                            @error('penyelenggara_prestasi')
-                                                                            <div class="invalid-feedback">
-                                                                                {{$message}}
-                                                                            </div>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row my-3">
-                                                                    <div class="col">
-                                                                        <div class="input-group">
-                                                                            <div class="custom-file">
-                                                                                <label for="sertifikat" class="form-label">Sertifikat</label>
-                                                                                <input type="file" class="form-control @error('sertifikat') is-invalid @enderror" id="sertifikat" name="sertifikat" aria-describedby="sertifikatHelp">
-                                                                            </div>
-                                                                        </div>
-                                                                        @error('sertifikat')
-                                                                        <div class="text-danger">
-                                                                            <small>{{$message}}</small>
-                                                                        </div>
-                                                                        @enderror
-                                                                        <div id="sertifikatHelp" class="form-text">Ketentuan :</br>*Format file : JPG</br>*Ukuran File : 100 Kb-3000 Kb</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            Apakah anda yakin ingin menghapus {{ $prsts->nama_prestasi }}?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                            <button type="submit" class="btn btn-primary">Yes</button>
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                            {{-- Modal Edit Data Prestasi --}}
+                                            <form method="post" action="pendaftar/prestasi/{{$prsts->id}}" enctype="multipart/form-data">@method('put') @csrf
+                                                <div class="modal fade" id="modalEditDataPrestasi{{$prsts->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditDataPrestasi{{$prsts->id}}Label" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalTambahDataPrestasiLabel">
+                                                                    Edit Data Prestasi
+                                                                </h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                {{-- Group Form --}}
+                                                                <div class="form-group mx-auto border rounded-5 border-1 p-5 mb-3" style="width: 800px;">
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <div class="mb-3">
+                                                                                <label for="jenis_prestasi_1" class="form-label">Jenis Prestasi</label>
+                                                                                <select class="form-select @error('jenis_prestasi') is-invalid @enderror" name="jenis_prestasi" value="{{ $prsts->jenis_prestasi }}" aria-label="Default select example">
+                                                                                    <option selected value="">--Jenis Prestasi--</option>
+                                                                                    <option @if ( $prsts->jenis_prestasi == "Kelompok") selected @endif value="Kelompok">Kelompok</option>
+                                                                                    <option @if ( $prsts->jenis_prestasi == "Individu") selected @endif value="Individu">Individu</option>
+                                                                                </select>
+                                                                                @error('jenis_prestasi')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{$message}}
+                                                                                </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <div class="mb-3">
+                                                                                <label for="tingkat_prestasi" class="form-label">Tingkat</label>
+                                                                                <select class="form-select @error('tingkat_prestasi') is-invalid @enderror" name="tingkat_prestasi" value="{{ $prsts->tingkat_prestasi }}" aria-label="Default select example">
+                                                                                    <option selected value="">--Pilih Tingkat Prestasi--</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Sekolah") selected @endif value="Sekolah">Sekolah</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Wilayah") selected @endif value="Wilayah">Wilayah</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Kabupaten/kota") selected @endif value="Kabupaten/kota">Kabupaten/kota</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Provinsi") selected @endif value="Provinsi">Provinsi</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Nasional") selected @endif value="Nasional">Nasional</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Internasional") selected @endif value="Internasional">Internasional</option>
+                                                                                    <option @if ($prsts->tingkat_prestasi == "Lainnya") selected @endif value="Lainnya">Lainnya</option>
+                                                                                </select>
+                                                                                @error('tingkat_prestasi')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{$message}}
+                                                                                </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-5">
+                                                                            <div class="mb-3">
+                                                                            <label for="nama_prestasi" class="form-label">Nama Prestasi</label>
+                                                                            <input type="text" class="form-control text-capitelize @error('nama_prestasi') is-invalid @enderror" id="nama_prestasi" placeholder="E.g Olimpiade Matematika" name="nama_prestasi" value="{{ $prsts->nama_prestasi }}">
+                                                                            @error('nama_prestasi')
+                                                                            <div class="invalid-feedback">
+                                                                            {{$message}}
+                                                                            </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col mb-3">
+                                                                            <label for="tahun_prestasi" class="form-label">Tahun</label>
+                                                                            <input type="text" class="form-control @error('tahun_prestasi') is-invalid @enderror" id="tahun_prestasi" placeholder="E.g 1960" name="tahun_prestasi" value="{{ $prsts->tahun }}">
+                                                                            @error('tahun_prestasi')
+                                                                            <div class="invalid-feedback">
+                                                                                {{$message}}
+                                                                            </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <div class="mb-3">
+                                                                                <label for="penyelenggara_prestasi" class="form-label">Penyelenggara</label>
+                                                                                <input type="text" class="form-control text-capitelize @error('penyelenggara_prestasi') is-invalid @enderror" id="penyelenggara_prestasi" placeholder="E.g Pemerintah Kab. Tasikmalaya" name="penyelenggara_prestasi" value="{{ $prsts->penyelenggara }}">
+                                                                                @error('penyelenggara_prestasi')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{$message}}
+                                                                                </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row my-3">
+                                                                        <div class="col">
+                                                                            <div class="input-group">
+                                                                                <div class="custom-file">
+                                                                                    <label for="sertifikat" class="form-label">Sertifikat</label>
+                                                                                    <input type="file" class="form-control @error('sertifikat') is-invalid @enderror" id="sertifikat" name="sertifikat" aria-describedby="sertifikatHelp">
+                                                                                </div>
+                                                                            </div>
+                                                                            @error('sertifikat')
+                                                                            <div class="text-danger">
+                                                                                <small>{{$message}}</small>
+                                                                            </div>
+                                                                            @enderror
+                                                                            <div id="sertifikatHelp" class="form-text">Ketentuan :</br>*Format file : JPG</br>*Ukuran File : 100 Kb-3000 Kb</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

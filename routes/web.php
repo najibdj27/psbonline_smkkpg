@@ -28,6 +28,9 @@ Route::get('/check/{pass}', [PendaftarController::class, 'index']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('dashboard_admin');
 Route::get('/admin/profile', [AdminController::class, 'show'])->middleware('auth')->name('profile_admin');
 Route::put('/admin/{admin}/{user}', [AdminController::class, 'update'])->middleware('auth');
+Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaran'])->middleware('auth')->name('pendaftaran_admin');
+Route::get('admin/settings', [AdminController::class, 'settings'])->middleware('auth')->name('settings_pendaftaran');
+Route::put('admin/settings', [AdminController::class, 'settings_update'])->middleware('auth');
 Route::get('/admin/create', [AdminController::class, 'create'])->name('create_admin');
 Route::post('/admin/create', [AdminController::class, 'store']);
 
@@ -52,7 +55,3 @@ Route::get('/admin/login', [AdminController::class, 'login'])->middleware('guest
 Route::post('/login', [PendaftarController::class, 'authenticate']);
 Route::post('admin/login', [AdminController::class, 'authenticate']);
 Route::get('/logout', [PendaftarController::class, 'logout'])->middleware('auth')->name('logout');
-
-// Settings
-Route::get('admin/settings', [AdminController::class, 'settings'])->middleware('auth')->name('settings_pendaftaran');
-Route::put('admin/settings', [AdminController::class, 'settings_update']);
