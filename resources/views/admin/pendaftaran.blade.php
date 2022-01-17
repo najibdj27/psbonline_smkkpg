@@ -4,6 +4,7 @@
     
 @section('additional CSS')
     <link rel="stylesheet" href="{{asset ('/Styles/CSS/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset ('/Styles/CSS/print.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 @endsection
 
@@ -73,7 +74,7 @@
                                             <h5 class="modal-title" id="detailPendaftar{{ $pndftr->id }}Label">{{ $pndftr->nama }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" id="printJS-pendaftar{{$pndftr->id}}">
                                             <div class="row">
                                                 <div class="col-4 mt-4">
                                                     <div class="photo rounded overflow-hidden ms-4" style="height:300px; width: 300px;">
@@ -268,7 +269,14 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                <i class='bx bx-x'></i>
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary" onclick="printJS('printJS-pendaftar{{$pndftr->id}}', 'html')">
+                                                <i class='bx bxs-printer'></i>
+                                                Print Form
+                                            </button>
                                         </div>
                                         </div>
                                     </div>
@@ -285,4 +293,5 @@
 
 @section('additional JS')
     <script src="{{ asset('Styles/JS/sidebar.js')}}"></script>
+    <script src="{{ asset('Styles/JS/print.min.js')}}"></script>
 @endsection
